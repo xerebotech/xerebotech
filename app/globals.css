@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --orange: #FE7700;
+  --orange-muted: #FFB366;
+  --orange-light: #FFF4E6;
+  --dark: #3E3939;
+  --deepest: #2C2727;
+  --light: #F6F4F4;
+  --warm-gray-200: #E0DCDA;
+  --warm-gray-300: #C7C2BF;
+  --warm-gray-500: #8A8380;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--deepest);
+  background-color: white;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
