@@ -67,9 +67,7 @@ export default function Header() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Results', href: '#results' },
+    { name: 'Services', href: '#services' }, { name: 'Results', href: '#results' }, { name: 'About', href: '#about' },
     { name: 'FAQ', href: '#faq' },
   ];
 
@@ -200,8 +198,13 @@ export default function Header() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <CreativeButton onClick={openModal} variant="shimmer">
-              Book a Call
+            <CreativeButton
+              onClick={openModal}
+              variant="shimmer"
+              className="px-6 md:px-8 py-3 md:py-4 text-sm md:text-base shadow-md shadow-orange-500/20"
+            >
+              <span className="hidden md:inline">Book a Call</span>
+              <span className="md:hidden">Contact</span>
             </CreativeButton>
           </motion.div>
 

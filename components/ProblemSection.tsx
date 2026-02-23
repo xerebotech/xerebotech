@@ -120,9 +120,10 @@ export default function ProblemSection() {
                             variant="shimmer"
                             size="lg"
                             width="full"
-                            className="md:w-auto shadow-xl hover:shadow-2xl"
+                            className="md:w-auto shadow-xl hover:shadow-2xl px-6 md:px-10 py-4 md:py-5 text-base md:text-lg"
                         >
-                            Meet Your Future Team
+                            <span className="hidden md:inline">Meet Your Future Team</span>
+                            <span className="md:hidden">Meet the Team</span>
                         </CreativeButton>
                     </motion.div>
 

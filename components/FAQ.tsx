@@ -136,16 +136,27 @@ export default function FAQ() {
     setShowForm(true);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', { ...formData, relatedTo: selectedQuestion });
-    // Handle form submission
+    try {
+      await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formType: 'FAQ Question',
+          name: formData.name,
+          email: formData.email,
+          question: formData.question,
+          relatedTo: selectedQuestion,
+        }),
+      });
+    } catch { }
     setShowForm(false);
     setFormData({ name: '', email: '', question: '' });
   };
 
   return (
-    <section className="px-6 py-20 md:py-32 bg-light relative overflow-hidden">
+    <section id="faq" className="px-6 py-20 md:py-32 bg-light relative overflow-hidden">
       {/* Enhanced Background Effects */}
       <motion.div
         animate={{

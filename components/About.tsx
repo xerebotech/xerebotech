@@ -18,7 +18,7 @@ const employees = [
         initials: 'BB',
         name: 'Bibin Basil',
         role: 'Founder & CEO',
-        image: '/1771313050610.png',
+        image: '/team/Bibin.webp',
         bio: '10+ years in marketing & technology. Built Xerebo to solve the fragmentation problem across hundreds of UAE businesses. Certified by Google, HubSpot, and Meta.',
         stats: [
             { icon: Award, value: '10+', label: 'Years Experience' },
@@ -27,10 +27,10 @@ const employees = [
         ]
     },
     {
-        initials: 'SK',
-        name: 'Sarah Khan',
+        initials: 'BB',
+        name: 'Binoy Basil',
         role: 'Head of Strategy',
-        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2574&auto=format&fit=crop',
+        image: '/team/Binoy-Basil.webp',
         bio: '8 years driving growth strategies for Fortune 500 companies and startups. Expert in data-driven marketing and brand positioning across MENA markets.',
         stats: [
             { icon: Award, value: '8+', label: 'Years Strategy' },
@@ -39,22 +39,22 @@ const employees = [
         ]
     },
     {
-        initials: 'MR',
-        name: 'Mohammed Rahman',
-        role: 'Creative Director',
-        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2574&auto=format&fit=crop',
-        bio: 'Award-winning designer with 12 years creating compelling brand experiences. Specialized in visual storytelling and digital transformation.',
+        initials: 'JS',
+        name: 'Jose Sebastian',
+        role: 'Web Developer',
+        image: '/team/Mr.Jose-sebastian.webp',
+        bio: '10+ years in marketing & technology. Built Xerebo to solve the fragmentation problem across hundreds of UAE businesses. Certified by Google, HubSpot, and Meta.',
         stats: [
-            { icon: Award, value: '12+', label: 'Years Design' },
-            { icon: TrendingUp, value: '200+', label: 'Campaigns' },
-            { icon: Globe, value: '15+', label: 'Awards Won' },
+            { icon: Award, value: '9+', label: 'Years Tech' },
+            { icon: TrendingUp, value: '80%', label: 'Efficiency' },
+            { icon: Globe, value: '100+', label: 'Integrations' },
         ]
     },
     {
-        initials: 'LT',
-        name: 'Lisa Thompson',
+        initials: 'RP',
+        name: 'Rizzal R P',
         role: 'Performance Marketing Lead',
-        image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2570&auto=format&fit=crop',
+        image: '/team/Rizal_Junior%20data%20anlyst.webp',
         bio: '6 years optimizing campaigns across Google, Meta, and TikTok. Delivered over $50M in client revenue through data-driven paid strategies.',
         stats: [
             { icon: Award, value: '6+', label: 'Years Paid' },
@@ -62,18 +62,7 @@ const employees = [
             { icon: Globe, value: '1000+', label: 'Campaigns' },
         ]
     },
-    {
-        initials: 'AR',
-        name: 'Ahmed Rashid',
-        role: 'Tech & Analytics Director',
-        image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2670&auto=format&fit=crop',
-        bio: '9 years building marketing technology solutions. Expert in marketing automation, CRM systems, and predictive analytics for growth.',
-        stats: [
-            { icon: Award, value: '9+', label: 'Years Tech' },
-            { icon: TrendingUp, value: '80%', label: 'Efficiency' },
-            { icon: Globe, value: '100+', label: 'Integrations' },
-        ]
-    }
+
 ];
 
 export default function About() {
@@ -122,7 +111,7 @@ export default function About() {
     const currentEmployee = employees[currentIndex];
 
     return (
-        <section className="py-24 md:py-32 bg-light relative overflow-hidden font-heading">
+        <section id="about" className="py-24 md:py-32 bg-light relative overflow-hidden font-heading">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     {/* Content side */}
@@ -161,7 +150,7 @@ export default function About() {
                             onClick={openModal}
                             variant="shimmer"
                             size="lg"
-                            className="bg-gradient-to-r from-orange to-orange-muted hover:from-orange-muted hover:to-orange shadow-lg shadow-orange/25"
+                            className="bg-gradient-to-r from-orange to-orange-muted hover:from-orange-muted hover:to-orange shadow-lg shadow-orange/25 w-full md:w-auto px-8 md:px-10 py-4 md:py-5 text-base md:text-lg"
                         >
                             Let&apos;s Talk
                         </CreativeButton>
