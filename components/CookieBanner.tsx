@@ -8,6 +8,7 @@ import Link from 'next/link';
 declare global {
     interface Window {
         dataLayer: any[]; // eslint-disable-line @typescript-eslint/no-explicit-any
+        gtag: (...args: any[]) => void; // eslint-disable-line @typescript-eslint/no-explicit-any
     }
 }
 
@@ -16,11 +17,24 @@ declare global {
 export default function CookieBanner() {
     const [isVisible, setIsVisible] = useState(false);
 
-    const pushToDataLayer = (consent: string) => {
+    const updateConsent = (status: 'accepted' | 'declined') => {
+        const consentValue = status === 'accepted' ? 'granted' : 'denied';
+
+        // Update Google Consent Mode v2
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+                'ad_storage': consentValue,
+                'ad_user_data': consentValue,
+                'ad_personalization': consentValue,
+                'analytics_storage': consentValue,
+            });
+        }
+
+        // Also push custom event for GTM triggers
         if (typeof window !== 'undefined' && window.dataLayer) {
             window.dataLayer.push({
                 event: 'consent_choice',
-                consent_status: consent,
+                consent_status: status,
                 timestamp: new Date().toISOString()
             });
         }
@@ -29,31 +43,29 @@ export default function CookieBanner() {
 
 
     useEffect(() => {
-        // Check if user has already made a choice
         const consent = localStorage.getItem('xerebo_cookie_consent');
 
         if (!consent) {
-            // Show banner after 2 seconds for a better entrance
             const timer = setTimeout(() => {
                 setIsVisible(true);
             }, 2000);
             return () => clearTimeout(timer);
         } else {
-            // If already decided, ensure GTM knows the status
-            pushToDataLayer(consent);
+            // Re-apply consent on page load (consent init in layout.tsx handles defaults)
+            updateConsent(consent as 'accepted' | 'declined');
         }
     }, []);
 
     const handleAccept = () => {
         localStorage.setItem('xerebo_cookie_consent', 'accepted');
         setIsVisible(false);
-        pushToDataLayer('accepted');
+        updateConsent('accepted');
     };
 
     const handleDecline = () => {
         localStorage.setItem('xerebo_cookie_consent', 'declined');
         setIsVisible(false);
-        pushToDataLayer('declined');
+        updateConsent('declined');
     };
 
     return (

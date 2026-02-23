@@ -28,14 +28,36 @@ export default function RootLayout({
   return (
     <html lang="en" className={spaceGrotesk.variable}>
       <head>
-        {/* Initialize dataLayer for GTM */}
-        <Script id="gtm-init" strategy="beforeInteractive">
+        {/* Consent Mode v2: must run BEFORE GTM loads */}
+        <Script id="gtm-consent-init" strategy="beforeInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
+
+            // Check if user already made a consent choice
+            var storedConsent = localStorage.getItem('xerebo_cookie_consent');
+            var consentValue = storedConsent === 'accepted' ? 'granted' : 'denied';
+
+            // Set consent defaults (denied until user accepts)
+            gtag('consent', 'default', {
+              'ad_storage': consentValue,
+              'ad_user_data': consentValue,
+              'ad_personalization': consentValue,
+              'analytics_storage': consentValue,
+              'wait_for_update': 500
+            });
+
+            // Push restored consent to dataLayer for GTM triggers
+            if (storedConsent) {
+              dataLayer.push({
+                event: 'consent_choice',
+                consent_status: storedConsent
+              });
+            }
           `}
         </Script>
-        {/* GTM Script Placeholder */}
+
+        {/* GTM loads AFTER consent defaults are set */}
         {process.env.NEXT_PUBLIC_GTM_ID && (
           <Script id="gtm-script" strategy="afterInteractive">
             {`
