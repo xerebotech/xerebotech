@@ -11,8 +11,7 @@ declare global {
     }
 }
 
-// Google Apps Script Web App URL
-const GOOGLE_SHEETS_API_URL = process.env.NEXT_PUBLIC_CONSENT_SHEET_URL;
+
 
 export default function CookieBanner() {
     const [isVisible, setIsVisible] = useState(false);
@@ -27,26 +26,7 @@ export default function CookieBanner() {
         }
     };
 
-    const saveConsentToSheet = async (consent: string) => {
-        if (!GOOGLE_SHEETS_API_URL) return;
 
-        try {
-            await fetch(GOOGLE_SHEETS_API_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    timestamp: new Date().toISOString(),
-                    consent: consent,
-                    userAgent: navigator.userAgent,
-                    referrer: document.referrer,
-                    url: window.location.href
-                })
-            });
-        } catch (error) {
-            console.error('Consent logging failed:', error);
-        }
-    };
 
     useEffect(() => {
         // Check if user has already made a choice
@@ -68,14 +48,12 @@ export default function CookieBanner() {
         localStorage.setItem('xerebo_cookie_consent', 'accepted');
         setIsVisible(false);
         pushToDataLayer('accepted');
-        saveConsentToSheet('accepted');
     };
 
     const handleDecline = () => {
         localStorage.setItem('xerebo_cookie_consent', 'declined');
         setIsVisible(false);
         pushToDataLayer('declined');
-        saveConsentToSheet('declined');
     };
 
     return (

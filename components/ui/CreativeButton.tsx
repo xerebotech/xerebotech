@@ -147,7 +147,7 @@ export default function CreativeButton({
                             transition={{ duration: 0.4 }}
                             style={{ transformOrigin: 'left' }}
                         />
-                        <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300 delay-100">
+                        <span className="relative z-10 flex items-center gap-2 group-hover:text-[#FE7700] transition-colors duration-300 delay-100">
                             {children}
                             {Icon ? <Icon className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
                         </span>

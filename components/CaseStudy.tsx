@@ -5,7 +5,7 @@ import { ArrowUpRight, TrendingUp, Users, DollarSign } from 'lucide-react';
 
 export default function CaseStudy() {
   return (
-    <section className="px-6 py-20 md:py-28 bg-dark-deepest text-white">
+    <section id="results" className="px-6 py-20 md:py-28 bg-dark-deepest text-white">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

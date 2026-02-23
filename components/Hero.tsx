@@ -29,12 +29,24 @@ export default function Hero() {
           From strategy to execution, we handle the full marketing lifecycle — with systems, data, and technology that scale your business.
         </p>
 
-        <div className="flex items-center justify-center gap-5 flex-wrap">
-          <CreativeButton onClick={openModal} variant="shimmer" size="lg">
-            Get Your Free Audit
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-5 w-full max-w-md md:max-w-none mx-auto">
+          <CreativeButton
+            onClick={openModal}
+            variant="shimmer"
+            size="lg"
+            className="w-full md:w-auto px-8 md:px-10 py-4 text-base md:text-lg shadow-lg shadow-orange-500/20"
+          >
+            <span className="hidden md:inline">Get Your Free Audit</span>
+            <span className="md:hidden">Free Audit</span>
           </CreativeButton>
-          <CreativeButton href="#services" variant="outline" size="lg">
-            See What We Do
+          <CreativeButton
+            href="#services"
+            variant="outline"
+            size="lg"
+            className="w-full md:w-auto px-8 md:px-10 py-4 text-base md:text-lg"
+          >
+            <span className="hidden md:inline">See What We Do</span>
+            <span className="md:hidden">Our Services</span>
           </CreativeButton>
         </div>
       </motion.div>

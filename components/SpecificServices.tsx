@@ -158,16 +158,16 @@ export default function ServicesShowcase() {
 
                     <div className="relative bg-gradient-to-br from-[#323939] to-[#1f2626] rounded-3xl p-12 border border-[#FE7700]/20 shadow-2xl">
 
-                        <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+                        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-10">
 
-                            <div>
-                                <div className="flex items-center gap-3 mb-4">
-                                    <Sparkles className="w-7 h-7 text-[#FE7700]" />
-                                    <h3 className="text-3xl md:text-4xl font-bold text-white">
+                            <div className="text-center md:text-left">
+                                <div className="flex items-center gap-3 mb-4 justify-center md:justify-start">
+                                    <Sparkles className="w-6 md:w-7 h-6 md:h-7 text-[#FE7700]" />
+                                    <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
                                         Want Everything?
                                     </h3>
                                 </div>
-                                <p className="text-white/70 text-lg">
+                                <p className="text-white/70 text-base md:text-lg">
                                     Get the complete growth system with Marketing Intelligence.
                                 </p>
                             </div>
@@ -176,10 +176,11 @@ export default function ServicesShowcase() {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={openModal}
-                                className="px-10 py-5 bg-gradient-to-r from-[#FE7700] to-orange-600 text-white font-bold text-lg rounded-full shadow-xl shadow-[#FE7700]/40 flex items-center gap-3"
+                                className="w-full md:w-auto px-8 md:px-10 py-4 md:py-5 bg-gradient-to-r from-[#FE7700] to-orange-600 text-white font-bold text-base md:text-lg rounded-full shadow-xl shadow-[#FE7700]/40 flex items-center justify-center gap-3"
                             >
-                                Explore Marketing Intelligence
-                                <ChevronRight className="w-6 h-6" />
+                                <span className="hidden md:inline">Explore Marketing Intelligence</span>
+                                <span className="md:hidden">Get Full System</span>
+                                <ChevronRight className="w-5 md:w-6 h-5 md:h-6 flex-shrink-0" />
                             </motion.button>
                         </div>
                     </div>
