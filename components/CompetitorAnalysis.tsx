@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Lock, CheckCircle2, Globe, Zap, ArrowRight } from 'lucide-react';
+import PhoneInput from './PhoneInput';
 
 export default function CompetitorAnalysis() {
     const [url, setUrl] = useState('');
@@ -239,13 +240,12 @@ export default function CompetitorAnalysis() {
                                                         className="w-full bg-dark border border-gray-700 rounded-lg py-2.5 md:py-3 px-4 text-white text-sm focus:outline-none focus:border-orange"
                                                         required
                                                     />
-                                                    <input
-                                                        type="tel"
-                                                        placeholder="Mobile Number *"
+                                                    <PhoneInput
                                                         value={mobile}
-                                                        onChange={(e) => setMobile(e.target.value)}
-                                                        className="w-full bg-dark border border-gray-700 rounded-lg py-2.5 md:py-3 px-4 text-white text-sm focus:outline-none focus:border-orange"
+                                                        onChange={setMobile}
+                                                        placeholder="Mobile Number *"
                                                         required
+                                                        className="xerebo-phone-input-dark"
                                                     />
                                                     <button
                                                         type="submit"

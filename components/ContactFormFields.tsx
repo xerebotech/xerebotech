@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
+import PhoneInput from './PhoneInput';
 
 interface FormData {
     name: string;
@@ -21,6 +22,7 @@ export default function ContactFormFields({ className }: { className?: string })
         role: '',
         service: '',
     });
+    const [phone, setPhone] = useState('');
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -37,7 +39,7 @@ export default function ContactFormFields({ className }: { className?: string })
             const res = await fetch('/api/submit-form', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ formType: 'Contact Form', ...formData }),
+                body: JSON.stringify({ formType: 'Contact Form', ...formData, phone }),
             });
 
             if (!res.ok) throw new Error('Submission failed');
@@ -87,14 +89,11 @@ export default function ContactFormFields({ className }: { className?: string })
                 className="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-orange transition-colors"
             />
 
-            <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
+            <PhoneInput
+                value={phone}
+                onChange={setPhone}
                 placeholder="Phone Number *"
                 required
-                className="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-orange transition-colors"
             />
 
             <input
