@@ -25,10 +25,44 @@ export default function ContactFormFields({ className }: { className?: string })
     const [phone, setPhone] = useState('');
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [errorMsg, setErrorMsg] = useState('');
+    const [lastAutoSaved, setLastAutoSaved] = useState('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
+
+    // Auto-save logic
+    React.useEffect(() => {
+        // Don't auto-save if form is already successfully submitted
+        if (status === 'success') return;
+
+        // Don't auto-save if all main fields are empty
+        const hasData = formData.name || formData.email || phone || formData.company;
+        if (!hasData) return;
+
+        // Don't auto-save if data hasn't changed since last auto-save
+        const currentDataString = JSON.stringify({ ...formData, phone });
+        if (currentDataString === lastAutoSaved) return;
+
+        const timer = setTimeout(async () => {
+            try {
+                await fetch('/api/submit-form', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        formType: 'Contact Form (Partial)',
+                        ...formData,
+                        phone
+                    }),
+                });
+                setLastAutoSaved(currentDataString);
+            } catch (err) {
+                console.error('Auto-save error:', err);
+            }
+        }, 2000); // 2 second debounce
+
+        return () => clearTimeout(timer);
+    }, [formData, phone, status, lastAutoSaved]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

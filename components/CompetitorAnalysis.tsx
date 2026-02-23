@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Lock, CheckCircle2, Globe, Zap, ArrowRight } from 'lucide-react';
 import PhoneInput from './PhoneInput';
@@ -15,6 +15,46 @@ export default function CompetitorAnalysis() {
     const [name, setName] = useState('');
     const [mobile, setMobile] = useState('');
     const [isUnlocked, setIsUnlocked] = useState(false);
+    const [lastAutoSaved, setLastAutoSaved] = useState('');
+
+    useEffect(() => {
+        // Don't auto-save if form is already successfully submitted or not in results view
+        if (isUnlocked || !showResults) return;
+
+        // Don't auto-save if all main fields are empty
+        const hasData = name || email || mobile;
+        if (!hasData) return;
+
+        // Don't auto-save if data hasn't changed since last auto-save
+        const currentDataString = JSON.stringify({ name, email, mobile, competitorUrl: url });
+        if (currentDataString === lastAutoSaved) return;
+
+        const timer = setTimeout(async () => {
+            try {
+                // Normalize URL — add https:// if user didn't type it
+                const normalizedUrl = url.startsWith('http://') || url.startsWith('https://')
+                    ? url
+                    : `https://${url}`;
+
+                await fetch('/api/submit-form', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        formType: 'Competitor Unlock (Partial)',
+                        name,
+                        email,
+                        mobile,
+                        competitorUrl: normalizedUrl
+                    }),
+                });
+                setLastAutoSaved(currentDataString);
+            } catch (err) {
+                console.error('Auto-save error:', err);
+            }
+        }, 2000); // 2 second debounce
+
+        return () => clearTimeout(timer);
+    }, [name, email, mobile, url, isUnlocked, showResults, lastAutoSaved]);
 
     const steps = [
         "Resolving DNS...",
