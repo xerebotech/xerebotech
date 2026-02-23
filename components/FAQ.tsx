@@ -125,6 +125,41 @@ export default function FAQ() {
     email: '',
     question: ''
   });
+  const [lastAutoSaved, setLastAutoSaved] = useState('');
+
+  // Auto-save logic for FAQ
+  useEffect(() => {
+    // Don't auto-save if modal isn't open or data is empty
+    if (!showForm) return;
+
+    const hasData = formData.name || formData.email || formData.question;
+    if (!hasData) return;
+
+    // Check if data changed since last auto-save
+    const currentDataString = JSON.stringify({ ...formData, relatedTo: selectedQuestion });
+    if (currentDataString === lastAutoSaved) return;
+
+    const timer = setTimeout(async () => {
+      try {
+        await fetch('/api/submit-form', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            formType: 'FAQ Question (Partial)',
+            name: formData.name,
+            email: formData.email,
+            question: formData.question,
+            relatedTo: selectedQuestion,
+          }),
+        });
+        setLastAutoSaved(currentDataString);
+      } catch (err) {
+        console.error('FAQ Auto-save error:', err);
+      }
+    }, 2000); // 2 second debounce
+
+    return () => clearTimeout(timer);
+  }, [formData, showForm, selectedQuestion, lastAutoSaved]);
 
   useEffect(() => {
     setIsClient(true);
