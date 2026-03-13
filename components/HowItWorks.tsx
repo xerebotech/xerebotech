@@ -84,22 +84,22 @@ export default function HowItWorks() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
-                className={`relative flex flex-col ${index % 2 === 0 ? '' : 'lg:mt-8'} group`}
+                className={`relative flex flex-col ${index % 2 === 0 ? '' : 'lg:mt-8'} group/card`}
               >
                 <div className={`flex flex-col`}>
                   <div className="bg-white p-8 rounded-3xl border border-dark-deepest/[0.03] shadow-[0_10px_40px_-15px_rgba(0,0,0,0.03)] hover:shadow-[0_30px_70px_-20px_rgba(254,119,0,0.12)] hover:border-orange/20 transition-all duration-500 relative overflow-hidden">
 
                     {/* Background Shine Effect */}
-                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-orange/5 rounded-full blur-3xl group-hover:bg-orange/10 transition-colors" />
+                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-orange/5 rounded-full blur-3xl group-hover/card:bg-orange/10 transition-colors" />
 
                     <div className="flex items-start justify-between mb-6">
-                      <div className="p-3 rounded-2xl bg-orange/5 text-orange group-hover:bg-orange group-hover:text-white transition-all duration-500">
+                      <div className="p-3 rounded-2xl bg-orange/5 text-orange group-hover/card:bg-orange group-hover/card:text-white transition-all duration-500">
                         <step.icon size={24} />
                       </div>
                       <span className="text-[10px] font-black uppercase tracking-widest text-dark-deepest/20">{step.phase}</span>
                     </div>
 
-                    <h3 className="text-xl font-black text-dark-deepest mb-4 group-hover:text-orange transition-colors uppercase tracking-tight">
+                    <h3 className="text-xl font-black text-dark-deepest mb-4 group-hover/card:text-orange transition-colors uppercase tracking-tight">
                       {step.title}
                     </h3>
 
@@ -137,8 +137,7 @@ export default function HowItWorks() {
             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12 text-center md:text-left">
               <div className="max-w-xl">
                 <h3 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight">
-                  Ready to initiate <br />
-                  Day 1?
+                  Ready to initiate ?
                 </h3>
                 <p className="text-white/40 text-lg">
                   Join 50+ UAE businesses who stopped waiting for "someday" results.

@@ -59,10 +59,10 @@ export default function Qualifier() {
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="relative bg-dark-deepest rounded-[3rem] p-8 md:p-14 text-white shadow-2xl overflow-hidden group border border-orange/20"
+                        className="relative bg-dark-deepest rounded-[3rem] p-8 md:p-14 text-white shadow-2xl overflow-hidden group/card border border-orange/20"
                     >
                         {/* Background Glow */}
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-orange/20 blur-[100px] -mr-32 -mt-32 transition-all duration-700 group-hover:bg-orange/30" />
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-orange/20 blur-[100px] -mr-32 -mt-32 transition-all duration-700 group-hover/card:bg-orange/30" />
 
                         <div className="relative z-10">
                             <div className="flex items-center gap-4 mb-12">
@@ -99,15 +99,15 @@ export default function Qualifier() {
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="bg-white rounded-[3rem] p-8 md:p-14 border border-dark-deepest/10 flex flex-col justify-center relative group shadow-xl"
+                        className="bg-white rounded-[3rem] p-8 md:p-14 border border-dark-deepest/10 flex flex-col justify-center relative group/card shadow-xl"
                     >
                         <div className="flex items-center gap-4 mb-12">
-                            <div className="p-3 rounded-2xl bg-dark-deepest/5 text-dark-deepest/20 group-hover:bg-red-500 group-hover:text-white transition-all duration-500">
+                            <div className="p-3 rounded-2xl bg-dark-deepest/5 text-dark-deepest/20 group-hover/card:bg-red-500 group-hover/card:text-white transition-all duration-500">
                                 <XCircle size={24} />
                             </div>
                             <div>
                                 <div className="text-[10px] font-black text-dark-deepest/40 uppercase tracking-[0.3em] mb-1">Qualifying Out</div>
-                                <h3 className="text-2xl md:text-3xl font-black text-dark-deepest uppercase tracking-tight opacity-20 font-heading">NOT For You If:</h3>
+                                <h3 className="text-2xl md:text-3xl font-black text-dark-deepest uppercase tracking-tight opacity-20 font-heading group-hover/card:opacity-100 transition-opacity">NOT For You If:</h3>
                             </div>
                         </div>
 
