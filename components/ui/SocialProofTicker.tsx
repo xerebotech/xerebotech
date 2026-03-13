@@ -4,14 +4,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const items = [
-    '<strong>Gulf Properties</strong> — 127 leads in 90 days',
-    '<strong>Zenith Medical</strong> — 89 patient inquiries/month',
-    '<strong>Skyward Tech</strong> — 52 consultations/month',
+    '<strong>Grovoz</strong> — 127 sales-ready leads in 90 days',
+    '<strong>Clifton Real Estate</strong> — 89 high-intent bookings',
+    '<strong>Best Solution LLC</strong> — 52 qualified consultations',
     '<strong>Google & Meta Partner</strong> certified',
     '<strong>93% client retention</strong> rate',
     '<strong>4.2x average ROAS</strong> across all clients',
     '<strong>50+ UAE businesses</strong> served',
-    '<strong>Zero setup fees</strong> — pay tier fee only'
+    '<strong>90-day prove-it guarantee</strong> — or you walk'
 ];
 
 export default function SocialProofTicker() {

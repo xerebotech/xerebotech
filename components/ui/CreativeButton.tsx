@@ -29,7 +29,7 @@ export default function CreativeButton({
 }: CreativeButtonProps) {
 
     const baseStyles = cn(
-        "relative inline-flex items-center justify-center font-bold overflow-hidden transition-all duration-300 font-heading z-10 group",
+        "relative inline-flex items-center justify-center font-bold overflow-hidden transition-all duration-300 font-heading z-10 group/cb",
         width === 'full' ? 'w-full' : ''
     );
 
@@ -153,7 +153,7 @@ export default function CreativeButton({
                             transition={{ duration: 0.4 }}
                             style={{ transformOrigin: 'left' }}
                         />
-                        <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300 delay-100">
+                        <span className="relative z-10 flex items-center gap-2 group-hover/cb:text-white transition-colors duration-300">
                             {children}
                             {IconContent}
                         </span>

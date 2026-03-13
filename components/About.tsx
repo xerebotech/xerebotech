@@ -17,7 +17,7 @@ const employees = [
     {
         initials: 'BB',
         name: 'Bibin Basil',
-        role: 'Founder & CEO',
+        role: 'Head Strategist & Consultant',
         image: '/team/Bibin.webp',
         bio: '10+ years in marketing & technology. Built Xerebo to solve the fragmentation problem across hundreds of UAE businesses. Certified by Google, HubSpot, and Meta.',
         stats: [
@@ -29,7 +29,7 @@ const employees = [
     {
         initials: 'BB',
         name: 'Binoy Basil',
-        role: 'Head of Strategy',
+        role: 'Data, AI & Automation Engineer',
         image: '/team/Binoy-Basil.webp',
         bio: '8 years driving growth strategies for Fortune 500 companies and startups. Expert in data-driven marketing and brand positioning across MENA markets.',
         stats: [
@@ -41,7 +41,7 @@ const employees = [
     {
         initials: 'JS',
         name: 'Jose Sebastian',
-        role: 'Web Developer',
+        role: 'Web Developer & Security Specialist',
         image: '/team/Mr.Jose-sebastian.webp',
         bio: '10+ years in marketing & technology. Built Xerebo to solve the fragmentation problem across hundreds of UAE businesses. Certified by Google, HubSpot, and Meta.',
         stats: [
@@ -52,14 +52,38 @@ const employees = [
     },
     {
         initials: 'RP',
-        name: 'Rizzal R P',
-        role: 'Performance Marketing Lead',
+        name: 'Rizal R P',
+        role: 'Data Analyst',
         image: '/team/Rizal_Junior%20data%20anlyst.webp',
         bio: '6 years optimizing campaigns across Google, Meta, and TikTok. Delivered over $50M in client revenue through data-driven paid strategies.',
         stats: [
             { icon: Award, value: '6+', label: 'Years Paid' },
             { icon: TrendingUp, value: '$50M+', label: 'Revenue' },
             { icon: Globe, value: '1000+', label: 'Campaigns' },
+        ]
+    },
+    {
+        initials: 'L',
+        name: 'Lijin Soli',
+        role: 'Paid Media & PPC Specialist',
+        image: '/team/lijin.webp',
+        bio: '5+ years mastering the art of high-conversion PPC. Specializes in scaling UAE-based lead generation campaigns with extreme focus on ROAS and CPA optimization.',
+        stats: [
+            { icon: Award, value: '5+', label: 'Years PPC' },
+            { icon: TrendingUp, value: '4.5x', label: 'Avg ROAS' },
+            { icon: Globe, value: 'Meta/Google', label: 'Certified' },
+        ]
+    },
+    {
+        initials: 'A',
+        name: 'Anshad Muhammed',
+        role: 'Full-Stack Developer',
+        image: '/team/Anshad.webp',
+        bio: '7+ years engineering enterprise-grade web solutions and marketing automation systems. Ensures every Xerebo deployment is high-performance, secure, and scalable.',
+        stats: [
+            { icon: Award, value: '7+', label: 'Years Dev' },
+            { icon: TrendingUp, value: '99.9%', label: 'Uptime' },
+            { icon: Globe, value: 'React/AI', label: 'Expert' },
         ]
     },
 

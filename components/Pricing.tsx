@@ -11,7 +11,6 @@ const PACKAGES = [
         name: "Foundation",
         price: "5,699",
         minAd: "11,000",
-        total: "16,699",
         description: "Perfect for specialized services looking to stabilize lead flow.",
         features: [
             "Paid ads, content, social & email",
@@ -27,7 +26,6 @@ const PACKAGES = [
         name: "Growth",
         price: "11,699",
         minAd: "25,000",
-        total: "36,699",
         description: "Our most popular engine for rapid UAE market capture.",
         features: [
             "Everything in Foundation",
@@ -43,7 +41,6 @@ const PACKAGES = [
         name: "Dominance",
         price: "21,699",
         minAd: "45,000",
-        total: "66,699",
         description: "Aggressive multi-channel scaling for market leaders.",
         features: [
             "Everything in Growth",
@@ -138,10 +135,7 @@ export default function Pricing() {
                                     <span className="text-[10px] font-black uppercase tracking-widest opacity-50">Min. Ad Budget</span>
                                     <span className="text-sm font-bold">AED {pkg.minAd}/mo</span>
                                 </div>
-                                <div className="flex justify-between items-center pt-3 border-t border-white/10">
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-orange leading-tight">Total with ads</span>
-                                    <span className="text-lg font-black">AED {pkg.total}/mo</span>
-                                </div>
+
                             </div>
 
                             {/* Features */}
@@ -157,16 +151,9 @@ export default function Pricing() {
                             <CreativeButton
                                 onClick={() => openModal(`${pkg.name} Package - ${pkg.buttonText}`)}
                                 variant={pkg.highlight ? 'shimmer' : 'outline'}
-                                className={`w-full py-4 rounded-xl text-base group transition-all duration-300 ${pkg.highlight ? 'hover:shadow-[0_20px_40px_-10px_rgba(254,119,0,0.3)]' : 'hover:border-orange/40'
-                                    }`}
+                                className={`w-full py-4 rounded-xl text-base group transition-all duration-300 ${pkg.highlight ? 'hover:shadow-[0_20px_40px_-10px_rgba(254,119,0,0.3)]' : 'hover:border-orange/40'}`}
                             >
-                                <motion.div
-                                    className="flex items-center justify-center gap-2"
-                                    whileHover={{ scale: 1.02 }}
-                                    whileTap={{ scale: 0.98 }}
-                                >
-                                    {pkg.buttonText}
-                                </motion.div>
+                                {pkg.buttonText}
                             </CreativeButton>
                         </motion.div>
                     ))}

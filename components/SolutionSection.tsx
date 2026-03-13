@@ -52,11 +52,9 @@ const SolutionSection = () => {
                         <span className="w-2 h-2 rounded-full bg-orange animate-pulse shadow-[0_0_10px_rgba(254,119,0,0.5)]" />
                         The Solution
                     </motion.div>
-
-
                     <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-dark-deepest mb-8 tracking-tighter font-heading leading-[1.1] md:leading-[0.9] text-balance">
-                        One System. <span className="bg-gradient-to-r from-orange to-dark-deepest bg-clip-text text-transparent">Every Channel.</span><br />
-                        Qualified Leads — or You Walk.
+                        One System. Every Channel.
+                        <span className="bg-gradient-to-r from-orange to-dark-deepest bg-clip-text text-transparent">Qualified Leads —</span>  or You Walk.
                     </h2>
                 </div>
 
@@ -64,7 +62,7 @@ const SolutionSection = () => {
                 <div className="hidden lg:block bg-white rounded-[3rem] shadow-[0_30px_100px_-20px_rgba(0,0,0,0.05)] overflow-hidden border border-dark-deepest/[0.03]">
                     {/* Table Head */}
                     <div className="grid grid-cols-12 bg-dark-deepest text-white">
-                        <div className="col-span-3 p-8 flex items-center font-black text-[10px] uppercase tracking-[0.2em] opacity-40 border-r border-white/5">
+                        <div className="col-span-3 p-8 flex items-center text-white text-[15px] uppercase tracking-[0.2em] opacity-40 border-r border-white/5">
                             Focus Area
                         </div>
                         <div className="col-span-4 p-8 flex flex-col items-center justify-center text-center border-r border-white/5">
@@ -96,16 +94,16 @@ const SolutionSection = () => {
 
                             {/* Other Agencies */}
                             <div className="col-span-4 p-8 border-r border-dark-deepest/[0.03] flex items-center gap-4 text-sm text-dark-deepest/40 italic">
-                                <div className="w-6 h-6 rounded-full bg-red-500/5 flex-shrink-0 flex items-center justify-center">
-                                    <X size={14} className="text-red-500/40" />
+                                <div className="w-4 h-4 rounded-full bg-red-500/5 flex-shrink-0 flex items-center justify-center">
+                                    <X size={8} className="text-red-500/40" />
                                 </div>
                                 {item.other}
                             </div>
 
                             {/* Xerebo */}
                             <div className="col-span-5 p-8 bg-orange/[0.02] flex items-center gap-5 text-base text-dark-deepest font-bold group-hover:bg-orange/[0.04] transition-colors">
-                                <div className="w-10 h-10 rounded-2xl bg-orange flex-shrink-0 flex items-center justify-center shadow-lg shadow-orange/20 rotate-3 group-hover:rotate-0 transition-transform">
-                                    <Check size={20} className="text-white" strokeWidth={3} />
+                                <div className="w-4 h-4 rounded-xl bg-orange flex-shrink-0 flex items-center justify-center shadow-lg shadow-orange/20 rotate-3 group-hover:rotate-0 transition-transform">
+                                    <Check size={8} className="text-white" strokeWidth={3} />
                                 </div>
                                 {item.xerebo}
                             </div>
