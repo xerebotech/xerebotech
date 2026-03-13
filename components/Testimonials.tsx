@@ -8,25 +8,25 @@ const testimonials = [
         name: "Mr. Vipin Kumar",
         role: "General Manager",
         company: "Best Solution LLC",
-        content: "20 posts a month and zero prospects. Xerebo gave me 52 qualified consultations in month three. I count pipeline value now, not posts.",
+        content: "We were generating noise, not business. Xerebo shifted us from volume to quality. Now, leads arrive pre-informed and ready to buy, so our team spends less time filtering and more time closing. That's the kind of change that truly stays.",
         icon: "VK",
-        result: "52 Consultations/mo"
+        result: "Lead Quality Improved"
     },
     {
         name: "Mr. Akhil Saja Vijay",
         role: "Owner",
         company: "Clifton Real Estate",
-        content: "We received 12 leads a month. Xerebo gave us 89 high-intent bookings. I've referred two other real estate owners — both on the Growth tier.",
+        content: "Three agencies in two years — beautiful decks, vague results, endless excuses. Xerebo was different from the first call. No fluff, just a clear strategy tied to property enquiries. Our cost per serious buyer dropped by 60%. I finally know exactly where every dirham goes.",
         icon: "ASV",
-        result: "89 Intent Bookings"
+        result: "60% Cost Reduction"
     },
     {
         name: "Ms.Aswani Krishnan",
-        role: "Marketing Head",
+        role: "Managing Director",
         company: "Grovoz",
-        content: "We were spending AED 30K/month on three agencies with zero tracking. Day 90 with Xerebo: 127 sales-ready leads. I cancelled all three.",
+        content: "I've sat in rooms with marketing consultants who talk for an hour and say nothing actionable. Xerebo audited our entire funnel in week one and handed us a 90-day growth plan we could execute immediately. They think like a CMO but operate like a specialist — that combination is rare.",
         icon: "AK",
-        result: "127 Sales-Ready Leads"
+        result: "90-Day Growth Plan"
     }
 ];
 

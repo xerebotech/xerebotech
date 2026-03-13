@@ -19,7 +19,7 @@ export default function SocialProofTicker() {
     const tickerItems = [...items, ...items, ...items];
 
     return (
-        <div className="w-full bg-dark-deepest/40 backdrop-blur-sm border-y border-white/5 py-4 overflow-hidden whitespace-nowrap relative group">
+        <div className="hidden md:block w-full bg-dark-deepest/40 backdrop-blur-sm border-y border-white/5 py-4 overflow-hidden whitespace-nowrap relative group">
             {/* Fade edges */}
             <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-dark-deepest to-transparent z-10 pointer-events-none" />
             <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-dark-deepest to-transparent z-10 pointer-events-none" />
