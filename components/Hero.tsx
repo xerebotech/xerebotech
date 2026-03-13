@@ -42,9 +42,9 @@ export default function Hero() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
-            className="flex flex-col justify-center"
+            className="flex flex-col justify-center text-center lg:text-left items-center lg:items-start"
           >
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.1] md:leading-[1] mb-8 font-heading tracking-tighter text-balance">
+            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-8xl font-black leading-[1.1] md:leading-[1] mb-8 font-heading tracking-tighter text-balance">
               Your Marketing Should Generate{' '}
               <span className="relative inline-block text-orange">
                 <span className="relative z-10">Revenue,</span>
@@ -76,7 +76,7 @@ export default function Hero() {
               </p>
             </motion.div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4 mb-12">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-12 w-full">
               <CreativeButton
                 onClick={() => openModal('Hero CTA: Strategy Call')}
                 variant="shimmer"
@@ -102,7 +102,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative scale-90 sm:scale-100 origin-center lg:origin-right"
+            className="relative scale-[0.8] xs:scale-90 sm:scale-100 origin-center lg:origin-right mt-12 lg:mt-0"
           >
             {/* Outer glow */}
             <div className="absolute -inset-6 bg-orange/10 blur-[60px] rounded-full pointer-events-none" />
@@ -230,7 +230,7 @@ export default function Hero() {
                 x: { delay: 2, duration: 0.4 },
                 y: { delay: 2.5, duration: 3, repeat: Infinity, ease: 'easeInOut' }
               }}
-              className="absolute -right-2 sm:-right-5 top-14 bg-dark-deepest border border-white/10 rounded-2xl px-3 sm:px-5 py-3 sm:py-4 shadow-2xl flex items-center gap-3 sm:gap-4 z-20 scale-75 sm:scale-100"
+              className="absolute -right-4 sm:-right-10 top-2 lg:top-14 bg-dark-deepest border border-white/10 rounded-2xl px-3 sm:px-5 py-3 sm:py-4 shadow-2xl flex items-center gap-3 sm:gap-4 z-20 scale-[0.65] xs:scale-75 sm:scale-100"
             >
               <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl bg-orange/20 border border-orange/30 flex items-center justify-center flex-shrink-0">
                 <Clock size={16} className="text-orange" />
@@ -247,7 +247,7 @@ export default function Hero() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 2.2, duration: 0.5 }}
-              className="absolute -left-2 sm:-left-6 bottom-16 sm:bottom-24 bg-white border border-dark/[0.05] rounded-2xl px-4 sm:px-6 py-3 sm:py-4 shadow-xl z-20 hover:-rotate-2 transition-transform duration-500 cursor-default scale-75 sm:scale-100"
+              className="absolute -left-4 sm:-left-12 -bottom-6 sm:bottom-24 bg-white border border-dark/[0.05] rounded-2xl px-4 sm:px-6 py-3 sm:py-4 shadow-xl z-20 hover:-rotate-2 transition-transform duration-500 cursor-default scale-[0.65] xs:scale-75 sm:scale-100"
             >
               <p className="text-[8px] sm:text-[9px] font-black uppercase tracking-[0.25em] text-dark/30 mb-1 sm:mb-2 leading-none">Monthly Rev</p>
               <p className="text-xl sm:text-2xl font-black text-orange leading-none tracking-tight">AED 847,000</p>
@@ -274,7 +274,7 @@ export default function Hero() {
                   {stat.value}
                 </p>
                 <div className="flex flex-col">
-                  <p className="text-[8px] sm:text-[9px] text-dark/30 uppercase tracking-[0.2em] sm:tracking-[0.25em] font-black leading-tight max-w-[140px] sm:max-w-[160px] mx-auto md:mx-0">
+                  <p className="text-[10px] sm:text-[11px] text-dark/30 uppercase tracking-[0.2em] sm:tracking-[0.25em] font-black leading-tight max-w-[140px] sm:max-w-[160px] mx-auto md:mx-0">
                     {stat.label}
                   </p>
                 </div>

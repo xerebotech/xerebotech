@@ -205,7 +205,7 @@ export default function Header() {
               variant="shimmer"
               className="px-6 md:px-8 py-3 md:py-4 text-sm md:text-base shadow-md shadow-orange-500/20"
             >
-              <span className="hidden md:inline">Book a Call</span>
+              <span className="hidden md:inline">Schedule a Call</span>
               <span className="md:hidden">Contact</span>
             </CreativeButton>
           </motion.div>
@@ -294,7 +294,7 @@ export default function Header() {
                   className="space-y-4"
                 >
                   <CreativeButton onClick={() => { setMobileMenuOpen(false); openModal('Header Mobile CTA'); }} variant="shimmer" width="full" icon={Sparkles}>
-                    Book a Call
+                    Schedule a Call
                   </CreativeButton>
 
                   {/* Contact Info */}
