@@ -46,7 +46,7 @@ export default function ExitIntentPopup() {
 
     const handleAction = () => {
         handleClose();
-        openModal();
+        openModal('Exit Intent Blueprint');
     };
 
     return (

@@ -17,7 +17,7 @@ export default function FloatingCTA() {
             icon: Calendar,
             label: 'Book a Call',
             color: 'from-[#FE7700] to-orange-600',
-            onClick: () => { openModal(); setIsExpanded(false); }
+            onClick: () => { openModal('Floating Action: Book a Call'); setIsExpanded(false); }
         },
         {
             icon: MessageSquare,
@@ -51,6 +51,7 @@ export default function FloatingCTA() {
                     >
                         {actions.map((action, index) => {
                             const Icon = action.icon;
+                            const isPrimary = action.label === 'Book a Call';
                             return (
                                 <motion.button
                                     key={action.label}
@@ -61,10 +62,13 @@ export default function FloatingCTA() {
                                     className={`flex items-center gap-3 px-6 py-3 rounded-full 
                             bg-gradient-to-r ${action.color} text-white font-semibold
                             shadow-xl hover:shadow-2xl transform hover:scale-105 
-                            transition-all duration-300 whitespace-nowrap border border-white/10`}
+                            transition-all duration-300 whitespace-nowrap border border-white/20 relative overflow-hidden`}
                                 >
-                                    <Icon className="w-5 h-5" />
-                                    <span className="text-sm md:text-base">{action.label}</span>
+                                    {isPrimary && (
+                                        <span className="absolute inset-0 bg-white/20 animate-pulse" />
+                                    )}
+                                    <Icon className="w-5 h-5 relative z-10" />
+                                    <span className="text-sm md:text-base relative z-10">{action.label}</span>
                                 </motion.button>
                             );
                         })}

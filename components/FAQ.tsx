@@ -1,33 +1,29 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Plus, Minus, MessageCircle, Send, Sparkles, X } from 'lucide-react';
 
 const faqs = [
   {
-    question: "What industries do you work with?",
-    answer: "We specialize in B2B services, recruitment, real estate, education, and professional services in the UAE. If you have high-value customers and a long sales cycle, we're built for you."
+    question: "Is there a setup or onboarding fee?",
+    answer: "No. Zero setup fees. Your tier fee covers everything from day one — brand audit, CRM, tracking, campaigns, and launch."
   },
   {
-    question: "How is Xerebo different from a marketing agency?",
-    answer: "We're not an agency — we're your growth partner. Most agencies run ads. We build full marketing systems: strategy, execution, CRM, automation, analytics. You get a unified growth machine, not scattered campaigns."
+    question: "What happens after the first 90 days?",
+    answer: "Your fee switches to 20% of your monthly ad budget — or your tier fee, whichever is higher. If you're on Foundation (AED 5,699) and 20% of your budget is AED 4,000, you'd still pay AED 5,699. If 20% becomes AED 8,000, your fee becomes AED 8,000."
   },
   {
-    question: "How quickly will I see results?",
-    answer: "Quick wins start within 30 days (ad optimizations, landing page fixes). Compounding growth typically kicks in around Month 3-4 once systems, automation, and content start working together. Real transformation? 6-12 months."
+    question: "What if the leads aren't good enough?",
+    answer: "We define \"qualified lead\" together before onboarding — demographic fit, intent signals, channel attribution. At 90 days, CRM data is the judge. If we didn't deliver, you walk. No penalties."
   },
   {
-    question: "What does it cost?",
-    answer: "We specialize in B2B services, recruitment, real estate, education, and professional services in the UAE. Minimum budget: AED 15,000/month. Contact us for a custom quote based on your needs."
+    question: "Why can't I buy just SEO or ads separately?",
+    answer: "Isolated channels underperform. Ads without landing pages waste clicks. Content without retargeting loses awareness. Our system is built so each channel feeds the next. SEO is tiered: basic at Growth, full at Dominance."
   },
   {
-    question: "Do I own the CRM and systems you build?",
-    answer: "Yes — 100%. Everything we build is yours. CRM, ERP, website, data, systems — you own it all forever. No per-seat licensing, no subscription lock-in."
-  },
-  {
-    question: "I've been burned by agencies. Why trust Xerebo?",
-    answer: "We built Xerebo differently. We're accountable for outcomes, not activities. Our flagship client achieved 1,050% revenue growth. Start with a free audit — see the difference before committing."
+    question: "Is the ad budget included in the price?",
+    answer: "No. Tier fee covers our team, strategy, content, management, and tools. Ad budget is paid directly to platforms (Google, Meta, LinkedIn) and is completely separate."
   }
 ];
 
@@ -127,6 +123,13 @@ export default function FAQ() {
   });
   const [lastAutoSaved, setLastAutoSaved] = useState('');
 
+  // Track submission state via ref to prevent stale closure issues in auto-save
+  const isSubmittingRef = useRef(false);
+  const showFormRef = useRef(showForm);
+  useEffect(() => {
+    showFormRef.current = showForm;
+  }, [showForm]);
+
   // Auto-save logic for FAQ
   useEffect(() => {
     // Don't auto-save if modal isn't open or data is empty
@@ -140,6 +143,9 @@ export default function FAQ() {
     if (currentDataString === lastAutoSaved) return;
 
     const timer = setTimeout(async () => {
+      // Re-verify absolute latest state via refs
+      if (!showFormRef.current || isSubmittingRef.current) return;
+
       try {
         await fetch('/api/submit-form', {
           method: 'POST',
@@ -173,6 +179,7 @@ export default function FAQ() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    isSubmittingRef.current = true;
     try {
       await fetch('/api/submit-form', {
         method: 'POST',
@@ -185,7 +192,10 @@ export default function FAQ() {
           relatedTo: selectedQuestion,
         }),
       });
-    } catch { }
+      isSubmittingRef.current = false;
+    } catch {
+      isSubmittingRef.current = false;
+    }
     setShowForm(false);
     setFormData({ name: '', email: '', question: '' });
   };
@@ -244,25 +254,17 @@ export default function FAQ() {
           className="text-center mb-16"
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange/10 border border-orange/20 text-orange text-sm font-bold tracking-widest uppercase mb-8 backdrop-blur-sm font-heading"
           >
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            >
-              <Sparkles className="w-4 h-4" />
-            </motion.div>
+            <span className="w-2 h-2 rounded-full bg-orange animate-pulse shadow-[0_0_10px_rgba(254,119,0,0.5)]" />
             FAQ
           </motion.div>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-dark mb-6 font-heading">
-            Common{" "}
-            <span className="bg-gradient-to-r from-orange to-dark-deepest bg-clip-text text-transparent">
-              Questions</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-dark mb-8 tracking-tighter font-heading leading-[1.1] md:leading-[0.9] text-balance">
+            Common <span className="bg-gradient-to-r from-orange to-dark-deepest bg-clip-text text-transparent">Questions</span>
           </h2>
 
           <p className="text-dark/70 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">

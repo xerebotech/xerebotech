@@ -130,9 +130,8 @@ export default function About() {
                             <span className="w-2 h-2 rounded-full bg-orange animate-pulse shadow-[0_0_10px_rgba(254,119,0,0.5)]" />
                             About Xerebo
                         </motion.div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-dark mb-6 font-heading">
-                            Not Another Agency.
-                            <br />
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-dark-deepest mb-8 tracking-tighter font-heading leading-[1.1] md:leading-[0.9] text-balance">
+                            Not Another Agency.<br />
                             <span className="bg-gradient-to-r from-orange to-dark-deepest bg-clip-text text-transparent">
                                 A Growth Partner.
                             </span>
@@ -147,7 +146,7 @@ export default function About() {
                         </p>
 
                         <CreativeButton
-                            onClick={openModal}
+                            onClick={() => openModal('About Section CTA')}
                             variant="shimmer"
                             size="lg"
                             className="bg-gradient-to-r from-orange to-orange-muted hover:from-orange-muted hover:to-orange shadow-lg shadow-orange/25 w-full md:w-auto px-8 md:px-10 py-4 md:py-5 text-base md:text-lg"

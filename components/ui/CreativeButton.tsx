@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { LucideIcon, ArrowRight, Rocket } from 'lucide-react';
+import { LucideIcon, ArrowRight, Rocket, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface CreativeButtonProps {
@@ -35,9 +35,20 @@ export default function CreativeButton({
 
     const sizeStyles = {
         sm: "px-5 py-2.5 text-xs rounded-full",
-        md: "px-7 py-3.5 text-sm rounded-full",
-        lg: "px-9 py-4 text-base rounded-full"
+        md: "px-7 py-3.5 text-xs sm:text-sm rounded-full",
+        lg: "px-9 py-4 text-sm sm:text-base rounded-full"
     };
+
+    // Shared animated icon component
+    const IconContent = (
+        <motion.div
+            animate={{ x: [0, 3, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="flex items-center"
+        >
+            {Icon ? <Icon className="w-4 h-4" /> : <ArrowUpRight className="w-4 h-4" />}
+        </motion.div>
+    );
 
     // Rendering logic based on variant
     const renderContent = () => {
@@ -56,12 +67,7 @@ export default function CreativeButton({
                         />
                         <span className="relative z-10 flex items-center gap-2">
                             {children}
-                            <motion.div
-                                animate={{ x: [0, 3, 0] }}
-                                transition={{ duration: 1.5, repeat: Infinity }}
-                            >
-                                {Icon ? <Icon className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
-                            </motion.div>
+                            {IconContent}
                         </span>
                     </motion.div>
                 );
@@ -89,8 +95,8 @@ export default function CreativeButton({
                             />
                         ))}
                         <span className="relative z-10 flex items-center gap-2">
-                            {Icon && <Icon className="w-4 h-4" />}
                             {children}
+                            {IconContent}
                         </span>
                     </motion.div>
                 );
@@ -109,12 +115,12 @@ export default function CreativeButton({
                         />
                         <span className="relative z-10 flex items-center gap-2">
                             {children}
+                            {IconContent}
                         </span>
                     </motion.div>
                 );
 
             case 'particles':
-                // Simplified particle effect for performance
                 return (
                     <motion.div
                         whileHover="hover"
@@ -129,7 +135,7 @@ export default function CreativeButton({
                         />
                         <span className="relative z-10 flex items-center gap-2">
                             {children}
-                            {Icon ? <Icon className="w-4 h-4" /> : <Rocket className="w-4 h-4" />}
+                            {IconContent}
                         </span>
                     </motion.div>
                 )
@@ -147,9 +153,9 @@ export default function CreativeButton({
                             transition={{ duration: 0.4 }}
                             style={{ transformOrigin: 'left' }}
                         />
-                        <span className="relative z-10 flex items-center gap-2 group-hover:text-[#FE7700] transition-colors duration-300 delay-100">
+                        <span className="relative z-10 flex items-center gap-2 group-hover:text-white transition-colors duration-300 delay-100">
                             {children}
-                            {Icon ? <Icon className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
+                            {IconContent}
                         </span>
                     </motion.div>
                 );
@@ -163,7 +169,7 @@ export default function CreativeButton({
                     >
                         <span className="relative z-10 flex items-center gap-2">
                             {children}
-                            {Icon && <Icon className="w-4 h-4" />}
+                            {IconContent}
                         </span>
                     </motion.div>
                 );
