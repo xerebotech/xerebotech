@@ -176,16 +176,23 @@ export default function CreativeButton({
         }
     };
 
+    const wrapperClasses = cn(
+        "inline-block",
+        width === 'full' ? 'w-full' : '',
+        className?.includes('w-full') ? 'w-full' : '',
+        className?.includes('sm:w-auto') ? 'sm:w-auto' : ''
+    );
+
     if (href) {
         return (
-            <Link href={href} className="inline-block" onClick={onClick}>
+            <Link href={href} className={wrapperClasses} onClick={onClick}>
                 {renderContent()}
             </Link>
         );
     }
 
     return (
-        <button onClick={onClick} className="inline-block">
+        <button onClick={onClick} className={wrapperClasses}>
             {renderContent()}
         </button>
     );
