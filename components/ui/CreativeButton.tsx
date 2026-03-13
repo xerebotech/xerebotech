@@ -144,7 +144,7 @@ export default function CreativeButton({
                 return (
                     <motion.div
                         whileHover={{ scale: 1.02 }}
-                        className={cn(baseStyles, sizeStyles[size], "bg-transparent border-2 border-[#FE7700] text-[#FE7700] overflow-hidden", className)}
+                        className={cn(baseStyles, sizeStyles[size], "bg-transparent border-2 border-[orange] overflow-hidden", className)}
                     >
                         <motion.div
                             className="absolute inset-0 bg-[#FE7700]"
@@ -153,7 +153,7 @@ export default function CreativeButton({
                             transition={{ duration: 0.4 }}
                             style={{ transformOrigin: 'left' }}
                         />
-                        <span className="relative z-10 flex items-center gap-2 group-hover/cb:text-white transition-colors duration-300">
+                        <span className="relative z-10 flex items-center gap-2 text-orange group-hover/cb:!text-white transition-colors duration-300">
                             {children}
                             {IconContent}
                         </span>

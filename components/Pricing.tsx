@@ -103,7 +103,7 @@ export default function Pricing() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
-                            className={`relative p-8 md:p-10 rounded-[3rem] border transition-all duration-500 group ${pkg.highlight
+                            className={`relative p-8 md:p-10 rounded-[3rem] border transition-all duration-500 group/card ${pkg.highlight
                                 ? 'bg-dark-deepest text-white border-orange shadow-[0_40px_80px_-15px_rgba(254,119,0,0.15)] scale-105 z-20 ring-1 ring-orange/20'
                                 : 'bg-white text-dark-deepest border-dark-deepest/5 shadow-xl hover:border-orange/20 z-10'
                                 }`}
@@ -150,8 +150,8 @@ export default function Pricing() {
 
                             <CreativeButton
                                 onClick={() => openModal(`${pkg.name} Package - ${pkg.buttonText}`)}
-                                variant={pkg.highlight ? 'shimmer' : 'outline'}
-                                className={`w-full py-4 rounded-xl text-base group transition-all duration-300 ${pkg.highlight ? 'hover:shadow-[0_20px_40px_-10px_rgba(254,119,0,0.3)]' : 'hover:border-orange/40'}`}
+                                variant={pkg.highlight ? 'shimmer' : 'pulse'}
+                                className={`w-full py-4 rounded-xl text-base transition-all duration-300 ${pkg.highlight ? 'hover:shadow-[0_20px_40px_-10px_rgba(254,119,0,0.3)]' : 'hover:border-orange/40'}`}
                             >
                                 {pkg.buttonText}
                             </CreativeButton>

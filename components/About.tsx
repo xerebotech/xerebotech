@@ -78,7 +78,7 @@ const employees = [
         initials: 'A',
         name: 'Anshad Muhammed',
         role: 'Full-Stack Developer',
-        image: '/team/Anshad.webp',
+        image: '/team/anshad.webp',
         bio: '7+ years engineering enterprise-grade web solutions and marketing automation systems. Ensures every Xerebo deployment is high-performance, secure, and scalable.',
         stats: [
             { icon: Award, value: '7+', label: 'Years Dev' },
