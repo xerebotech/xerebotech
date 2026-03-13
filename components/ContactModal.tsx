@@ -66,7 +66,7 @@ export default function ContactModal() {
 
                             {/* Scrollable Content */}
                             <div className="p-6 overflow-y-auto custom-scrollbar">
-                                <ContactFormFields />
+                                <ContactFormFields hideExtras={true} />
                             </div>
                         </motion.div>
                     </div>

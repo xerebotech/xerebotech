@@ -67,14 +67,16 @@ export default function Header() {
   }, [mobileMenuOpen]);
 
   const navLinks = [
-    { name: 'Services', href: '#services' }, { name: 'Results', href: '#results' }, { name: 'About', href: '#about' },
+    { name: 'WHY XEREBO', href: '#why-us' },
+    { name: 'OUR PLAN', href: '#pricing' },
     { name: 'FAQ', href: '#faq' },
+    { name: 'CONTACT US', href: '#contact' },
   ];
 
   return (
     <>
       <motion.header
-        className={`fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50 transition-all duration-500 overflow-hidden ${isScrolled ? 'shadow-2xl shadow-[#323939]/10' : ''
+        className={`fixed left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50 transition-all duration-500 overflow-hidden ${isScrolled ? 'top-2 md:top-4 shadow-2xl shadow-[#323939]/10' : 'top-16 md:top-20'
           }`}
         style={{
           backgroundColor: headerBackground,
@@ -100,7 +102,7 @@ export default function Header() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={openModal}
+              onClick={() => openModal('Header Topbar Offer')}
               className="bg-white text-[#FE7700] text-[8px] md:text-[10px] font-bold px-1.5 py-0.5 md:px-2.5 md:py-1 rounded-full shadow-lg flex items-center gap-1 hover:bg-orange-50 transition-colors"
             >
               Claim Now
@@ -122,7 +124,7 @@ export default function Header() {
                 animate={{
                   opacity: isScrolled ? 0 : 1,
                   scale: isScrolled ? 0.8 : 1,
-                  display: isScrolled ? "none" : "block"
+                  pointerEvents: isScrolled ? "none" : "auto"
                 }}
                 transition={{ duration: 0.3 }}
                 className="relative w-36 md:w-44 h-10 md:h-12"
@@ -139,11 +141,11 @@ export default function Header() {
 
               {/* Rotating Icon (Visible on Scroll) */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.8, display: "none" }}
+                initial={{ opacity: 0, scale: 0.8 }}
                 animate={{
                   opacity: isScrolled ? 1 : 0,
                   scale: isScrolled ? 1 : 0.8,
-                  display: isScrolled ? "block" : "none",
+                  pointerEvents: isScrolled ? "auto" : "none",
                   rotate: isScrolled ? 360 : 0
                 }}
                 transition={{
@@ -151,7 +153,7 @@ export default function Header() {
                   scale: { duration: 0.3 },
                   rotate: { duration: 8, repeat: Infinity, ease: "linear" }
                 }}
-                className="relative w-10 md:w-12 h-10 md:h-12"
+                className="absolute inset-0 w-10 md:w-12 h-10 md:h-12 mx-auto"
               >
                 <Image
                   src="/Xerebo.png"
@@ -199,7 +201,7 @@ export default function Header() {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <CreativeButton
-              onClick={openModal}
+              onClick={() => openModal('Header CTA: Book a Call')}
               variant="shimmer"
               className="px-6 md:px-8 py-3 md:py-4 text-sm md:text-base shadow-md shadow-orange-500/20"
             >
@@ -291,7 +293,7 @@ export default function Header() {
                   transition={{ duration: 0.5, delay: 0.4 }}
                   className="space-y-4"
                 >
-                  <CreativeButton onClick={() => { setMobileMenuOpen(false); openModal(); }} variant="shimmer" width="full" icon={Sparkles}>
+                  <CreativeButton onClick={() => { setMobileMenuOpen(false); openModal('Header Mobile CTA'); }} variant="shimmer" width="full" icon={Sparkles}>
                     Book a Call
                   </CreativeButton>
 

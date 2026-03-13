@@ -98,9 +98,9 @@ export default function ProblemSection() {
                             Sound Familiar?
                         </motion.div>
 
-                        <h2 className="text-5xl md:text-6xl font-bold mb-8 leading-tight text-dark font-heading">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-dark mb-8 tracking-tighter font-heading leading-[1.1] md:leading-[0.9] text-balance">
                             The Problems Holding <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange to-dark-deepest drop-shadow-sm">
+                            <span className="bg-gradient-to-r from-orange to-dark-deepest bg-clip-text text-transparent">
                                 Your Business Back.
                             </span>
                         </h2>

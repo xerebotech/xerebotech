@@ -23,8 +23,8 @@ export default function CaseStudy() {
             <span className="w-2 h-2 rounded-full bg-orange animate-pulse shadow-[0_0_10px_rgba(254,119,0,0.5)]" />
             Case Study
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Real Results, Real Growth
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-8 tracking-tighter font-heading leading-[1.1] md:leading-[0.9] text-balance">
+            Real Results, <span className="bg-gradient-to-r from-orange to-white bg-clip-text text-transparent">Real Growth</span>
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto">
             How we helped a Dubai-based recruitment firm grow from startup to 8-figure revenue in under 3 years.

@@ -24,8 +24,8 @@ html {
 }
 
 body {
-  color: var(--deepest);
-  background-color: white;
+  color: white;
+  background-color: #0a0a0a;
 }
 
 @layer utilities {

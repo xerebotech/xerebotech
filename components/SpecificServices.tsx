@@ -63,16 +63,18 @@ export default function ServicesShowcase() {
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                     className="text-center mb-20"
                 >
-                    <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#FE7700]/10 border border-[#FE7700]/20 text-[#FE7700] text-xs font-bold tracking-widest uppercase mb-6">
-                        <Target className="w-4 h-4" />
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange/10 border border-orange/20 text-orange text-sm font-bold tracking-widest uppercase mb-8 backdrop-blur-sm font-heading"
+                    >
+                        <span className="w-2 h-2 rounded-full bg-orange animate-pulse shadow-[0_0_10px_rgba(254,119,0,0.5)]" />
                         Services
-                    </div>
+                    </motion.div>
 
-                    <h2 className="text-4xl md:text-6xl font-bold text-[#323939] mb-6 leading-tight">
-                        Need Something Specific?{" "}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FE7700] to-orange-600">
-                            We&apos;ve Got You.
-                        </span>
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#323939] mb-8 tracking-tighter font-heading leading-[1.1] md:leading-[0.9] text-balance">
+                        Need Something <span className="bg-gradient-to-r from-[#FE7700] to-orange-600 bg-clip-text text-transparent">Specific?</span>
                     </h2>
 
                     <p className="text-xl text-[#323939]/70 max-w-3xl mx-auto leading-relaxed">
@@ -131,7 +133,7 @@ export default function ServicesShowcase() {
                                     <motion.button
                                         whileHover={{ x: 6 }}
                                         whileTap={{ scale: 0.97 }}
-                                        onClick={openModal}
+                                        onClick={() => openModal(service.title)}
                                         className="flex items-center gap-2 text-[#FE7700] font-semibold text-lg"
                                     >
                                         {service.cta}
@@ -175,7 +177,7 @@ export default function ServicesShowcase() {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                onClick={openModal}
+                                onClick={() => openModal('Marketing Intelligence')}
                                 className="w-full md:w-auto px-8 md:px-10 py-4 md:py-5 bg-gradient-to-r from-[#FE7700] to-orange-600 text-white font-bold text-base md:text-lg rounded-full shadow-xl shadow-[#FE7700]/40 flex items-center justify-center gap-3"
                             >
                                 <span className="hidden md:inline">Explore Marketing Intelligence</span>

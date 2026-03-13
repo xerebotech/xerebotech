@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Lock, CheckCircle2, Globe, Zap, ArrowRight } from 'lucide-react';
 import PhoneInput from './PhoneInput';
@@ -17,6 +17,14 @@ export default function CompetitorAnalysis() {
     const [isUnlocked, setIsUnlocked] = useState(false);
     const [lastAutoSaved, setLastAutoSaved] = useState('');
 
+    const isUnlockedRef = useEffectRef(isUnlocked);
+    function useEffectRef<T>(value: T) {
+        const ref = useRef(value);
+        useEffect(() => { ref.current = value; }, [value]);
+        return ref;
+    }
+    const isSubmittingRef = useRef(false);
+
     useEffect(() => {
         // Don't auto-save if form is already successfully submitted or not in results view
         if (isUnlocked || !showResults) return;
@@ -30,6 +38,9 @@ export default function CompetitorAnalysis() {
         if (currentDataString === lastAutoSaved) return;
 
         const timer = setTimeout(async () => {
+            // Re-verify absolute latest status via refs
+            if (isUnlockedRef.current || isSubmittingRef.current) return;
+
             try {
                 // Normalize URL — add https:// if user didn't type it
                 const normalizedUrl = url.startsWith('http://') || url.startsWith('https://')
@@ -104,11 +115,16 @@ export default function CompetitorAnalysis() {
 
     const handleUnlock = (e: React.FormEvent) => {
         e.preventDefault();
+        isSubmittingRef.current = true;
         fetch('/api/submit-form', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ formType: 'Competitor Unlock', name, email, mobile, competitorUrl: url }),
-        }).catch(() => { });
+        }).then(() => {
+            isSubmittingRef.current = false;
+        }).catch(() => {
+            isSubmittingRef.current = false;
+        });
         setIsUnlocked(true);
     };
 
@@ -128,15 +144,23 @@ export default function CompetitorAnalysis() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange/10 border border-orange/30 text-orange text-xs font-mono mb-5">
-                            <Zap size={12} />
-                            <span>MARKET_INTELLIGENCE_MODULE_V1.4</span>
-                        </div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange/10 border border-orange/20 text-orange text-sm font-bold tracking-widest uppercase mb-8 backdrop-blur-sm font-heading"
+                        >
+                            <span className="w-2 h-2 rounded-full bg-orange animate-pulse shadow-[0_0_10px_rgba(254,119,0,0.5)]" />
+                            Market Intelligence
+                        </motion.div>
 
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-5 font-heading">
-                            Reveal Your Untapped{' '}
-                            <span className="text-orange">Growth Potential.</span>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-8 tracking-tighter font-heading leading-[1.1] md:leading-[0.9] text-balance">
+                            Reveal Your Untapped <br />
+                            <span className="bg-gradient-to-r from-white to-orange bg-clip-text text-transparent">
+                                Growth Potential.
+                            </span>
                         </h2>
+
 
                         <p className="text-gray-400 text-base md:text-lg mb-6 leading-relaxed">
                             Stop guessing. Our AI engine analyzes your current strategy against market leaders to uncover hidden revenue opportunities in seconds.

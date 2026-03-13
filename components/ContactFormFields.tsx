@@ -1,31 +1,37 @@
 'use client';
 
 import React, { useState } from 'react';
-import { CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
+import { CheckCircle2, Loader2, AlertCircle, ArrowRight } from 'lucide-react';
 import PhoneInput from './PhoneInput';
+import { useContactModal } from '@/context/ContactModalContext';
 
 interface FormData {
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     phone: string;
-    company: string;
-    role: string;
-    service: string;
+    budget: string;
 }
 
-export default function ContactFormFields({ className }: { className?: string }) {
+export default function ContactFormFields({ className, hideExtras = false }: { className?: string, hideExtras?: boolean }) {
+    const { meta } = useContactModal();
     const [formData, setFormData] = useState<FormData>({
-        name: '',
+        firstName: '',
+        lastName: '',
         email: '',
         phone: '',
-        company: '',
-        role: '',
-        service: '',
+        budget: '',
     });
     const [phone, setPhone] = useState('');
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [errorMsg, setErrorMsg] = useState('');
     const [lastAutoSaved, setLastAutoSaved] = useState('');
+
+    // Use ref to track status for bulletproof closure checks in setTimeout
+    const statusRef = React.useRef(status);
+    React.useEffect(() => {
+        statusRef.current = status;
+    }, [status]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -33,24 +39,25 @@ export default function ContactFormFields({ className }: { className?: string })
 
     // Auto-save logic
     React.useEffect(() => {
-        // Don't auto-save if form is already successfully submitted
-        if (status === 'success') return;
+        if (status === 'success' || status === 'loading') return;
 
-        // Don't auto-save if all main fields are empty
-        const hasData = formData.name || formData.email || phone || formData.company;
+        const hasData = formData.firstName || formData.email || phone;
         if (!hasData) return;
 
-        // Don't auto-save if data hasn't changed since last auto-save
         const currentDataString = JSON.stringify({ ...formData, phone });
         if (currentDataString === lastAutoSaved) return;
 
         const timer = setTimeout(async () => {
+            // Re-check absolute latest status via ref to bypass closure staleness
+            if (statusRef.current === 'success' || statusRef.current === 'loading') return;
+
             try {
                 await fetch('/api/submit-form', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        formType: 'Contact Form (Partial)',
+                        formType: 'CTA Form (Partial)',
+                        selectedPackage: meta,
                         ...formData,
                         phone
                     }),
@@ -59,7 +66,7 @@ export default function ContactFormFields({ className }: { className?: string })
             } catch (err) {
                 console.error('Auto-save error:', err);
             }
-        }, 2000); // 2 second debounce
+        }, 2000);
 
         return () => clearTimeout(timer);
     }, [formData, phone, status, lastAutoSaved]);
@@ -73,7 +80,12 @@ export default function ContactFormFields({ className }: { className?: string })
             const res = await fetch('/api/submit-form', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ formType: 'Contact Form', ...formData, phone }),
+                body: JSON.stringify({
+                    formType: 'CTA Form',
+                    selectedPackage: meta,
+                    ...formData,
+                    phone
+                }),
             });
 
             if (!res.ok) throw new Error('Submission failed');
@@ -82,7 +94,7 @@ export default function ContactFormFields({ className }: { className?: string })
             setStatus('success');
         } catch (err) {
             console.error(err);
-            setErrorMsg('Something went wrong. Please try again or email us directly.');
+            setErrorMsg('Something went wrong. Please try again.');
             setStatus('error');
         }
     };
@@ -93,108 +105,139 @@ export default function ContactFormFields({ className }: { className?: string })
                 <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center">
                     <CheckCircle2 className="w-8 h-8 text-green-400" />
                 </div>
-                <h3 className="text-xl font-bold text-white">You&apos;re booked in!</h3>
-                <p className="text-gray-400 max-w-xs">
-                    We&apos;ve received your details and will be in touch within 24 hours.
+                <h3 className="text-xl font-bold text-white uppercase tracking-tight">You&apos;re Booked In!</h3>
+                <p className="text-gray-400 max-w-xs font-medium">
+                    We&apos;ve received your details and will reach out within 24 hours.
                 </p>
             </div>
         );
     }
 
     return (
-        <form onSubmit={handleSubmit} className={`space-y-4 ${className}`}>
-            <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Full Name *"
-                required
-                className="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-orange transition-colors"
-            />
-
-            <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Business Email *"
-                required
-                className="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-orange transition-colors"
-            />
-
-            <PhoneInput
-                value={phone}
-                onChange={setPhone}
-                placeholder="Phone Number *"
-                required
-            />
-
-            <input
-                type="text"
-                name="company"
-                value={formData.company}
-                onChange={handleChange}
-                placeholder="Company Name *"
-                required
-                className="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-orange transition-colors"
-            />
-
-            <select
-                name="role"
-                value={formData.role}
-                onChange={handleChange}
-                required
-                className="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-orange transition-colors appearance-none"
-            >
-                <option value="" disabled className="text-gray-400 bg-[#1A1817]">What best describes you?</option>
-                <option value="Entrepreneur / Founder" className="text-white bg-[#1A1817]">Entrepreneur / Founder</option>
-                <option value="Business Owner / MD" className="text-white bg-[#1A1817]">Business Owner / MD</option>
-                <option value="CMO / Head of Marketing" className="text-white bg-[#1A1817]">CMO / Head of Marketing</option>
-                <option value="Other" className="text-white bg-[#1A1817]">Other</option>
-            </select>
-
-            <select
-                name="service"
-                value={formData.service}
-                onChange={handleChange}
-                required
-                className="w-full px-5 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-orange transition-colors appearance-none"
-            >
-                <option value="" disabled className="text-gray-400 bg-[#1A1817]">What do you need most?</option>
-                <option value="Full Marketing Intelligence" className="text-white bg-[#1A1817]">Full Marketing Intelligence</option>
-                <option value="Performance Marketing" className="text-white bg-[#1A1817]">Performance Marketing</option>
-                <option value="SEO & Organic Growth" className="text-white bg-[#1A1817]">SEO & Organic Growth</option>
-                <option value="CRM & Automation" className="text-white bg-[#1A1817]">CRM & Automation</option>
-                <option value="Website Development" className="text-white bg-[#1A1817]">Website Development</option>
-                <option value="Not Sure Yet" className="text-white bg-[#1A1817]">Not Sure Yet</option>
-            </select>
-
-            {status === 'error' && (
-                <div className="flex items-start gap-2 text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">
-                    <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                    <span>{errorMsg}</span>
+        <div className={`space-y-6 ${className}`}>
+            {!hideExtras && (
+                <div className="text-center mb-8">
+                    <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-1">Book a Strategy Call</h3>
+                    <p className="text-white/40 text-sm font-bold uppercase tracking-widest">We&apos;ll reach out within 24 hours.</p>
                 </div>
             )}
 
-            <button
-                type="submit"
-                disabled={status === 'loading'}
-                className="w-full px-8 py-4 bg-orange text-white font-semibold rounded-xl transition-all hover:bg-[#e56b00] hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
-            >
-                {status === 'loading' ? (
-                    <>
-                        <Loader2 className="w-5 h-5 animate-spin" />
-                        Submitting...
-                    </>
-                ) : (
-                    'Book My Free Consultation →'
-                )}
-            </button>
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-1.5">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-white/40 px-1">First Name *</label>
+                        <input
+                            type="text"
+                            name="firstName"
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            placeholder="John"
+                            required
+                            className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/20 focus:outline-none focus:border-orange focus:ring-1 focus:ring-orange/30 transition-all font-bold"
+                        />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-white/40 px-1">Last Name *</label>
+                        <input
+                            type="text"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            placeholder="Smith"
+                            required
+                            className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/20 focus:outline-none focus:border-orange focus:ring-1 focus:ring-orange/30 transition-all font-bold"
+                        />
+                    </div>
+                </div>
 
-            <p className="text-gray-400 text-sm text-center">
-                We respond within 24 hours. No spam, ever.
-            </p>
-        </form>
+                <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-white/40 px-1">Email *</label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="john@company.com"
+                        required
+                        className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/20 focus:outline-none focus:border-orange focus:ring-1 focus:ring-orange/30 transition-all font-bold"
+                    />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-white/40 px-1">Phone / WhatsApp *</label>
+                    <PhoneInput
+                        value={phone}
+                        onChange={setPhone}
+                        placeholder="+971 50 000 0000"
+                        required
+                    />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-white/40 px-1">Monthly Ad Budget *</label>
+                    <select
+                        name="budget"
+                        value={formData.budget}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-5 py-4 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-orange focus:ring-1 focus:ring-orange/30 transition-all appearance-none font-bold"
+                    >
+                        <option value="" className="bg-dark-deepest">Select range</option>
+                        <option value="AED 11,000 – 25,000" className="bg-dark-deepest">AED 11,000 – 25,000</option>
+                        <option value="AED 25,000 – 45,000" className="bg-dark-deepest">AED 25,000 – 45,000</option>
+                        <option value="AED 45,000+" className="bg-dark-deepest">AED 45,000+</option>
+                        <option value="Not sure yet — help me figure it out" className="bg-dark-deepest">Not sure yet — help me figure it out</option>
+                    </select>
+                </div>
+
+                {status === 'error' && (
+                    <div className="flex items-start gap-2 text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">
+                        <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                        <span>{errorMsg}</span>
+                    </div>
+                )}
+
+                <button
+                    type="submit"
+                    disabled={status === 'loading'}
+                    className="w-full px-8 py-5 bg-orange text-white font-black uppercase tracking-widest rounded-xl transition-all hover:bg-[#e56b00] hover:scale-[1.02] flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed text-lg shadow-[0_15px_30px_rgba(254,119,0,0.3)]"
+                >
+                    {status === 'loading' ? (
+                        <>
+                            <Loader2 className="w-5 h-5 animate-spin" />
+                            Submitting...
+                        </>
+                    ) : (
+                        <>
+                            Book My Strategy Call
+                            <ArrowRight size={20} />
+                        </>
+                    )}
+                </button>
+
+                <p className="text-white/30 text-[10px] font-black uppercase tracking-widest text-center">
+                    No obligation · No spam · 24-hour response
+                </p>
+            </form>
+
+            {/* Proof Section */}
+            {!hideExtras && (
+                <div className="pt-8 border-t border-white/5">
+                    <div className="bg-white/[0.03] border border-white/5 rounded-2xl p-6 flex gap-4 items-center">
+                        <div className="w-12 h-12 flex-shrink-0 rounded-xl bg-orange/20 text-orange flex items-center justify-center font-black text-sm border border-orange/20">
+                            KA
+                        </div>
+                        <div>
+                            <p className="text-sm text-white/70 italic font-medium leading-relaxed mb-1">
+                                &quot;I cancelled all three agencies after 90 days. 127 qualified leads.&quot;
+                            </p>
+                            <p className="text-[10px] font-black uppercase tracking-widest text-white/30">
+                                Khalid Al-Rashid, CEO · Gulf Properties
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
     );
 }
