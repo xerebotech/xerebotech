@@ -27,7 +27,7 @@ export default function Hero() {
   const { openModal } = useContactModal();
 
   return (
-    <section className="relative min-h-screen flex flex-col pt-24 pb-16 md:pt-40 md:pb-24 bg-[#FFF4E6] overflow-hidden text-dark-deepest font-sans font-heading">
+    <section className="relative min-h-screen flex flex-col pt-40 pb-16 md:pt-40 md:pb-24 bg-[#FFF4E6] overflow-hidden text-dark-deepest font-sans font-heading">
 
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_40%,black,transparent)] pointer-events-none" />
@@ -44,7 +44,7 @@ export default function Hero() {
             transition={{ duration: 0.7 }}
             className="flex flex-col justify-center text-center lg:text-left items-center lg:items-start"
           >
-            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-8xl font-black leading-[1.1] md:leading-[1] mb-8 font-heading tracking-tighter text-balance">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-black leading-[1.1] md:leading-[1] mb-8 font-heading tracking-tighter text-balance">
               Your Marketing Should Generate{' '}
               <span className="relative inline-block text-orange">
                 <span className="relative z-10">Revenue,</span>

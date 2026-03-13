@@ -76,7 +76,7 @@ export default function Header() {
   return (
     <>
       <motion.header
-        className={`fixed left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50 transition-all duration-500 overflow-hidden ${isScrolled ? 'top-2 md:top-4 shadow-2xl shadow-[#323939]/10' : 'top-16 md:top-20'
+        className={`fixed left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50 transition-all duration-500 overflow-hidden ${isScrolled ? 'top-2 md:top-4 shadow-2xl shadow-[#323939]/10' : 'top-14 md:top-20'
           }`}
         style={{
           backgroundColor: headerBackground,
