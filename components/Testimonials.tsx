@@ -5,27 +5,27 @@ import { Star, Quote, TrendingUp, Sparkles } from 'lucide-react';
 
 const testimonials = [
     {
-        name: "Ravi Thakur",
-        role: "Founder",
-        company: "Skyward Tech",
+        name: "Mr. Vipin Kumar",
+        role: "General Manager",
+        company: "Best Solution LLC",
         content: "20 posts a month and zero prospects. Xerebo gave me 52 qualified consultations in month three. I count pipeline value now, not posts.",
-        icon: "RT",
+        icon: "VK",
         result: "52 Consultations/mo"
     },
     {
-        name: "Dr. Sara Mansour",
+        name: "Mr. Akhil Saja Vijay",
         role: "Owner",
-        company: "Zenith Medical",
-        content: "Patient inquiries: 12/month to 89 high-intent bookings. I've referred two other clinic owners — both on the Growth tier.",
-        icon: "SM",
+        company: "Clifton Real Estate",
+        content: "We received 12 leads a month. Xerebo gave us 89 high-intent bookings. I've referred two other real estate owners — both on the Growth tier.",
+        icon: "ASV",
         result: "89 Intent Bookings"
     },
     {
-        name: "Khalid Al-Rashid",
-        role: "CEO",
-        company: "Gulf Properties",
-        content: "AED 30K/month on three agencies, zero tracking. Day 90 with Xerebo: 127 sales-ready leads. I cancelled all three.",
-        icon: "KA",
+        name: "Ms.Aswani Krishnan",
+        role: "Marketing Head",
+        company: "Grovoz",
+        content: "We were spending AED 30K/month on three agencies with zero tracking. Day 90 with Xerebo: 127 sales-ready leads. I cancelled all three.",
+        icon: "AK",
         result: "127 Sales-Ready Leads"
     }
 ];

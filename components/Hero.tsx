@@ -7,10 +7,10 @@ import CreativeButton from '@/components/ui/CreativeButton';
 import { useContactModal } from '@/context/ContactModalContext';
 
 const BOTTOM_STATS = [
-  { value: '127', label: 'Leads in 90 Days (Real Estate)' },
-  { value: '89/mo', label: 'Monthly Patient Inquiries (Healthcare)' },
+  { value: '127', label: 'Sales-Ready Leads (Tech/Grovoz)' },
+  { value: '89/mo', label: 'High-Intent Bookings (Real Estate)' },
   { value: '4.2x', label: 'Average Client ROAS' },
-  { value: '52', label: 'Consultations/Month (Prof. Services)' },
+  { value: '52', label: 'Qualified Consultations (Prof. Services)' },
 ];
 
 const BAR_DATA = [28, 42, 33, 58, 44, 62, 48, 71, 66, 88, 82, 100];
@@ -27,11 +27,11 @@ export default function Hero() {
   const { openModal } = useContactModal();
 
   return (
-    <section className="relative min-h-screen flex flex-col pt-32 pb-16 md:pt-40 md:pb-24 bg-[#FFF4E6] overflow-hidden text-dark-deepest font-sans font-heading">
+    <section className="relative min-h-screen flex flex-col pt-24 pb-16 md:pt-40 md:pb-24 bg-[#FFF4E6] overflow-hidden text-dark-deepest font-sans font-heading">
 
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_40%,black,transparent)] pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-orange/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10 flex-grow flex flex-col">
@@ -44,32 +44,31 @@ export default function Hero() {
             transition={{ duration: 0.7 }}
             className="flex flex-col justify-center"
           >
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1] md:leading-[0.9] mb-8 font-heading tracking-tighter text-balance">
-              One System.<br />
-              <span className="relative inline-block">
-                <span className="text-orange relative z-10">Every Channel.</span>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.1] md:leading-[1] mb-8 font-heading tracking-tighter text-balance">
+              Your Marketing Should Generate{' '}
+              <span className="relative inline-block text-orange">
+                <span className="relative z-10">Revenue,</span>
                 <motion.div
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ delay: 1, duration: 0.8 }}
-                  className="absolute bottom-2 md:bottom-4 left-0 w-full h-3 md:h-5 bg-orange/20 -rotate-1 origin-left z-0"
+                  className="absolute bottom-1 md:bottom-2 left-0 w-full h-3 md:h-4 bg-orange/20 -rotate-1 origin-left z-0"
                 />
-              </span>
+              </span>{' '}
+              Not Reports.
             </h1>
 
-            <p className="text-xl md:text-3xl text-dark-deepest font-black leading-tight mb-10 max-w-xl uppercase tracking-tighter">
-              Qualified Leads — <span className="text-orange underline decoration-orange/30 underline-offset-8 italic">or You Walk.</span>
-            </p>
+
 
             <p className="text-base md:text-lg text-dark/70 leading-relaxed mb-8 max-w-lg font-medium">
-              We replace fragmented agencies with one integrated lead engine delivering sales-ready prospects directly to your CRM. No excuses. Just growth.
+              Xerebo Technologies replaces fragmented agency setups with one integrated system delivering sales-ready leads to your CRM. No excuses.
             </p>
 
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="inline-flex items-center gap-3 p-3 rounded-xl bg-green-500/10 border border-green-500/20 mb-8 w-fit"
+              className="inline-flex items-center gap-3 p-3 rounded-xl bg-green-500/10 border border-green-500/20 mb-10 w-fit"
             >
               <CheckCircle2 size={14} className="text-green-600 flex-shrink-0" />
               <p className="text-xs font-bold text-green-700">
@@ -77,7 +76,7 @@ export default function Hero() {
               </p>
             </motion.div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4 mb-10">
+            <div className="flex flex-col sm:flex-row items-center gap-4 mb-12">
               <CreativeButton
                 onClick={() => openModal('Hero CTA: Strategy Call')}
                 variant="shimmer"
@@ -96,16 +95,6 @@ export default function Hero() {
               </CreativeButton>
             </div>
 
-            {/* Trust bar min */}
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 opacity-40 text-[10px] font-black uppercase tracking-[0.2em] text-dark-deepest">
-              <span>50+ UAE businesses</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-orange/40" />
-              <span>4.2x avg ROAS</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-orange/40" />
-              <span>93% retention</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-orange/40" />
-              <span>Google & Meta Partner</span>
-            </div>
           </motion.div>
 
           {/* RIGHT — DASHBOARD */}
