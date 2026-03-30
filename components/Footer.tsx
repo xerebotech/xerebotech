@@ -47,7 +47,7 @@ export default function Footer() {
                 {[
                   { icon: Linkedin, href: "https://linkedin.com/company/xerebo", label: "LinkedIn" },
                   { icon: Instagram, href: "https://instagram.com/xerebo", label: "Instagram" }
-                ].map((social, idx) => (
+                ].map((social) => (
                   <motion.a
                     key={social.label}
                     href={social.href}
@@ -93,6 +93,7 @@ export default function Footer() {
                   </div>
                 </a>
 
+                {/* ✅ UPDATED: Visit Us */}
                 <a
                   href="https://www.google.com/maps/search/Business+Bay,+Dubai,+UAE"
                   target="_blank"
@@ -103,11 +104,19 @@ export default function Footer() {
                     <MapPin size={18} />
                   </div>
                   <div>
-                    <span className="block text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">Visit Us</span>
-                    <span className="text-white font-medium text-sm group-hover/item:text-orange transition-colors">Xerebo Technologies L.L.C - FZ</span>
-                    <span className="text-white font-medium text-sm group-hover/item:text-orange transition-colors">Office 905, Capital Golden Tower, Business Bay, Dubai</span>
+                    <span className="block text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-2">
+                      Visit Us
+                    </span>
+                    <span className="inline-block bg-orange/10 border border-orange/25 text-orange text-[10px] font-semibold tracking-wide px-2.5 py-0.5 rounded-full mb-2">
+                      Xerebo Technologies L.L.C - FZ
+                    </span>
+                    <span className="block text-white font-medium text-sm leading-snug group-hover/item:text-orange transition-colors">
+                      Office 905, Capital Golden Tower,<br />
+                      Business Bay, Dubai
+                    </span>
                   </div>
                 </a>
+
               </div>
             </motion.div>
           </div>
