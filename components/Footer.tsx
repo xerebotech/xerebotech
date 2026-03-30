@@ -93,7 +93,7 @@ export default function Footer() {
                   </div>
                 </a>
 
-                {/* ✅ UPDATED: Visit Us */}
+                {/* ✅ UPDATED: Dot separator + 3-line address */}
                 <a
                   href="https://www.google.com/maps/search/Business+Bay,+Dubai,+UAE"
                   target="_blank"
@@ -104,14 +104,16 @@ export default function Footer() {
                     <MapPin size={18} />
                   </div>
                   <div>
-                    <span className="block text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-2">
+                    <span className="block text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">
                       Visit Us
                     </span>
-                    <span className="inline-block bg-orange/10 border border-orange/25 text-orange text-[10px] font-semibold tracking-wide px-2.5 py-0.5 rounded-full mb-2">
-                      Xerebo Technologies L.L.C - FZ
-                    </span>
-                    <span className="block text-white font-medium text-sm leading-snug group-hover/item:text-orange transition-colors">
-                      Office 905, Capital Golden Tower,<br />
+                    <div className="flex items-center gap-1.5 mb-2">
+                      <span className="text-orange font-medium text-[11px]">Xerebo Technologies L.L.C - FZ</span>
+                      <span className="text-orange text-[10px]">•</span>
+                    </div>
+                    <span className="block text-white font-medium text-sm leading-relaxed group-hover/item:text-orange transition-colors">
+                      Office 905,<br />
+                      Capital Golden Tower,<br />
                       Business Bay, Dubai
                     </span>
                   </div>
