@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: "Xerebo — UAE's First Marketing Growth Intelligence",
   description: "Strategy, execution, and technology — all under one roof. From strategy to execution, we handle the full marketing lifecycle.",
   keywords: ["marketing", "UAE", "growth", "digital marketing", "CRM", "automation"],
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
