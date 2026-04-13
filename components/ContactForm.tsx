@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { CheckCircle2, Mail, Phone, MapPin, Linkedin, Instagram } from 'lucide-react';
+import { CheckCircle2, Mail, Phone, MapPin } from 'lucide-react';
 import ContactFormFields from '@/components/ContactFormFields';
 
 export default function ContactForm() {

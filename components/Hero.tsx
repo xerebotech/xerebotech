@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, TrendingUp, Zap, Clock, ArrowUpRight, Activity, Users, Target } from 'lucide-react';
+import { CheckCircle2, TrendingUp, Zap, Clock, ArrowUpRight, ChartLine, Users, Target } from 'lucide-react';
 import CreativeButton from '@/components/ui/CreativeButton';
 import { useContactModal } from '@/context/ContactModalContext';
 
@@ -131,7 +131,7 @@ export default function Hero() {
                 <div className="grid grid-cols-3 gap-2 sm:gap-3">
                   {[
                     { icon: <Target size={12} />, val: '247', label: 'LEADS', delta: '+18%' },
-                    { icon: <Activity size={12} />, val: '12%', label: 'CONV.', delta: '+3.2%' },
+                    { icon: <ChartLine size={12} />, val: '12%', label: 'CONV.', delta: '+3.2%' },
                     { icon: <TrendingUp size={12} />, val: '4.2x', label: 'ROAS', delta: '+42%' },
                   ].map((kpi, i) => (
                     <motion.div

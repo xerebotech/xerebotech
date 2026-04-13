@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Lock, CheckCircle2, Globe, Zap, ArrowRight } from 'lucide-react';
 import PhoneInput from './PhoneInput';
+import { getUTMParams } from '@/lib/utm';
 
 export default function CompetitorAnalysis() {
     const [url, setUrl] = useState('');
@@ -119,7 +120,7 @@ export default function CompetitorAnalysis() {
         fetch('/api/submit-form', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ formType: 'Competitor Unlock', name, email, mobile, competitorUrl: url }),
+            body: JSON.stringify({ formType: 'Competitor Unlock', name, email, mobile, competitorUrl: url, pageUrl: window.location.href, ...getUTMParams() }),
         }).then(() => {
             isSubmittingRef.current = false;
         }).catch(() => {

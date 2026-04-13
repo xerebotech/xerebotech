@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { CheckCircle2, Loader2, AlertCircle, ArrowRight } from 'lucide-react';
 import PhoneInput from './PhoneInput';
 import { useContactModal } from '@/context/ContactModalContext';
+import { getUTMParams } from '@/lib/utm';
 
 interface FormData {
     firstName: string;
@@ -57,7 +58,7 @@ export default function ContactFormFields({ className, hideExtras = false }: { c
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         formType: 'CTA Form (Partial)',
-                        selectedPackage: meta,
+                        selectedPackage: typeof meta === 'string' ? meta : '',
                         ...formData,
                         phone
                     }),
@@ -82,9 +83,11 @@ export default function ContactFormFields({ className, hideExtras = false }: { c
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     formType: 'CTA Form',
-                    selectedPackage: meta,
+                    selectedPackage: typeof meta === 'string' ? meta : '',
                     ...formData,
-                    phone
+                    phone,
+                    pageUrl: window.location.href,
+                    ...getUTMParams(),
                 }),
             });
 
